@@ -9,9 +9,9 @@ int main(){
 
     while (cont=='t')
     {
-
+        cout << "Hello World";
+        cont = 'f';
     }
-    
 
     return 0;
 }
