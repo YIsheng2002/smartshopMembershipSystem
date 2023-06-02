@@ -12,7 +12,6 @@ int main(){
         cout << "Hello World";
         cont = 'f';
     }
-    
 
     return 0;
 }
