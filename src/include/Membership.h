@@ -21,8 +21,10 @@ private:
 public:
     Membership();
     ~Membership();
-    void AddMember();
+    void AddMember(int, std::string, int);
     void printData();
+    void SearchMember();
+    void DeleteMember();
 };
 
 #endif
