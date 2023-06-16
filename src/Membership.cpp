@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include ".\include\Membership.h"
 using namespace std;
 
@@ -12,12 +13,17 @@ Membership::Membership(){
 Membership::~Membership(){}
 
 //Add new member to front?
-void Membership::AddMember(int memberID, std::string name, int age){
+void Membership::AddMember(int memberID, std::string name, int age, std::string phoneNo,
+std::string address, std::string startDate, std::string endDate){
 
     Member *pNew = new Member();
     pNew->memberID = memberID;
     pNew->name = name;
     pNew->age = age;
+    pNew->phoneNo = phoneNo;
+    pNew->address = address;
+    pNew->startDate = startDate;
+    pNew->endDate = endDate;
     pNew->link = pHead;
     pHead = pNew;
     numMember++;
@@ -38,7 +44,7 @@ void Membership::printData(){
 void Membership::SearchMember(){
     char option;
     string target;
-    bool found = false, valid = true;
+    bool found = false, valid = true, haveTitle = false;
     cout << "Search by: a) MemberID  b) name  c) age" << endl;
     cin >> option;
 
@@ -53,9 +59,17 @@ void Membership::SearchMember(){
         {
             if (pCurr->memberID == target_id) // found the Member by MemberID
             {
+                if (!haveTitle)
+                {
+                    cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                    << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
+                    << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
+                    haveTitle = true; 
+                }
                 // display the MemberID, name and age of the Member
-                cout << "id:" << pCurr->memberID << '\t' << "name:" << 
-                pCurr->name << '\t' << "age:" << pCurr->age << endl;
+                cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+                << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
+                << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
                 found = true;
                 break;
             }
@@ -81,8 +95,17 @@ void Membership::SearchMember(){
              index = pCurr->name.find(target);
             if (index != std::string::npos) // match
             {
-                cout << "id:" << pCurr->memberID << '\t' << "name:" << 
-                pCurr->name << '\t' << "age:" << pCurr->age << endl;
+                if (!haveTitle)
+                {
+                    cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                    << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
+                    << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
+                    haveTitle = true; 
+                }
+                // display the MemberID, name and age of the Member
+                cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+                << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
+                << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
                 found = true;
             }
             pCurr = pCurr->link;
@@ -100,8 +123,17 @@ void Membership::SearchMember(){
         {
             if (pCurr->age == target)
             {
-                cout << "id:" << pCurr->memberID << '\t' << "name:" << 
-                pCurr->name << '\t' << "age:" << pCurr->age << endl;
+                if (!haveTitle)
+                {
+                    cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                    << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
+                    << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
+                    haveTitle = true; 
+                }
+                // display the MemberID, name and age of the Member
+                cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+                << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
+                << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
                 found = true;
             }
             pCurr = pCurr->link;

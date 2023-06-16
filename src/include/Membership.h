@@ -10,7 +10,7 @@ private:
     class Member{
         public:
             int memberID, age;
-            std::string name, phoneNo, adress, startDate, endDate;
+            std::string name, phoneNo, address, startDate, endDate;
             Member* link;
     };
 
@@ -21,7 +21,7 @@ private:
 public:
     Membership();
     ~Membership();
-    void AddMember(int, std::string, int);
+    void AddMember(int, std::string, int, std::string, std::string, std::string, std::string);
     void printData();
     void SearchMember();
     void DeleteMember();
