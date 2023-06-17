@@ -22,10 +22,10 @@ int main() {
         switch (choice) 
         {
             case 1:
-                addnewmember(membersData);
+                membersData.addnewmember();
                 break;
             case 2:
-                displaymemberdata(membersData);
+                membersData.displaymemberdata();
                 break;
             case 3:
                 cout << "bye" << endl;
