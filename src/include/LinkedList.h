@@ -4,14 +4,16 @@
 #include <fstream>
 using namespace std;
 
-struct Node {
+struct Node 
+{
     int id;
     string name;
     int age;
     Node* pnext;
 };
 
-class LinkedList {
+class LinkedList 
+{
 private:
     Node* phead;
     void saveDataToFile(int id, string name, int age);
