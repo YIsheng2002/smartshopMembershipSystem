@@ -8,7 +8,7 @@ MembersData::MembersData()
     phead = nullptr;
 }
 
-void MembersData::addData(string name, int age) //add new member
+void MembersData::adddata(string name, int age) //add new member
 { 
     Node* newNode = new Node; //create new node
     newNode->name = name;
@@ -29,11 +29,11 @@ void MembersData::addData(string name, int age) //add new member
         newNode->id = temp->id + 1; //set the newnode id to the last node +1
         temp->pnext = newNode;
     }
-    saveDataToFile(newNode->id, name, age); 
+    savedatatofile(newNode->id, name, age); 
     cout << "Data sucessfully added!" << endl;
 }
 
-void MembersData::displayData() 
+void MembersData::displaymemberdata() 
 {
     ifstream file("membersdata.txt");
     if (!file) 
@@ -50,7 +50,7 @@ void MembersData::displayData()
     file.close();
 }
 
-void MembersData::saveDataToFile(int id, string name, int age) 
+void MembersData::savedatatofile(int id, string name, int age) 
 {
     ofstream file("membersdata.txt", ios::app);//append to existing content of the file
     file << "ID: " << id << " | Name: " << name << " | Age: " << age << endl;
@@ -58,7 +58,7 @@ void MembersData::saveDataToFile(int id, string name, int age)
 }
 
 
-void addnewmember(MembersData& membersData) 
+void MembersData::addnewmember() 
 {
     string name;
     int age;
@@ -66,10 +66,5 @@ void addnewmember(MembersData& membersData)
     cin >> name;
     cout << "Enter age: ";
     cin >> age;
-    membersData.addData(name, age);
-}
-
-void displaymemberdata(MembersData& membersData) 
-{
-    membersData.displayData();
+    adddata(name, age);
 }
