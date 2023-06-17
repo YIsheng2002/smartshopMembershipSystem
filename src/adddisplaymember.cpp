@@ -58,7 +58,7 @@ void MembersData::saveDataToFile(int id, string name, int age)
 }
 
 
-void addnewmember(MembersData& linkedList) 
+void addnewmember(MembersData& membersData) 
 {
     string name;
     int age;
@@ -66,10 +66,10 @@ void addnewmember(MembersData& linkedList)
     cin >> name;
     cout << "Enter age: ";
     cin >> age;
-    linkedList.addData(name, age);
+    membersData.addData(name, age);
 }
 
-void displaymemberdata(MembersData& linkedList) 
+void displaymemberdata(MembersData& membersData) 
 {
-    linkedList.displayData();
+    membersData.displayData();
 }
