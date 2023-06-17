@@ -15,17 +15,16 @@ struct Node
 
 class MembersData 
 {
-private:
-    Node* phead;
-    void saveDataToFile(int id, string name, int age);
 public:
+    Node* phead;
+    void savedatatofile(int id, string name, int age);
     MembersData();
-    void addData(string name, int age);
-    void displayData();
+    void adddata(string name, int age);
+    void addnewmember();
+    void displaymemberdata();
 };
 
 
-void addnewmember(MembersData& membersData);
-void displaymemberdata(MembersData& membersData);
+
 
 #endif
