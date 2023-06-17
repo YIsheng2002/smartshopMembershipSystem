@@ -1,2 +1,0 @@
-ID: 1 | Name: yas | Age: 20
-ID: 2 | Name: badrul | Age: 17
