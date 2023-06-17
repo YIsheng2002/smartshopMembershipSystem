@@ -14,8 +14,8 @@ int main() {
     do 
     {
         cout << "Choose an option:" << endl;
-        cout << "1. Add user data" << endl;
-        cout << "2. Display user data" << endl;
+        cout << "1. Add new member " << endl;
+        cout << "2. Display members data" << endl;
         cout << "3. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
