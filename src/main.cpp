@@ -9,22 +9,30 @@ int main(){
 
     while (cont=='t')
     {
-        cout << "MENU :" << endl;
-        cout << "1. Add Member" << endl;
-        cout << "2. Display Member" << endl;        
+        cout << "MENU"<< endl;
+        cout << "1. Add Item" << endl;
+        cout << "2. Display Item" << endl;
+        cout << "3. Sort Item" << endl;
+
         cin >> choice;
-
-        if (choice == 1)
+        switch (choice)
         {
+        case 1:
             ms1.AddToFront();
-        } else{
+            break;
+        case 2:
             ms1.printData();
+            break;
+        case 3:
+            cout << ms1.mergeSort(ms1.pHead);
+        case 4:
+            ms1.num();
+        default: 
+            break;
         }
-        
 
-        cout << "Do you want to continue? (t/f)";
+        cout << "Do you want to continue(t/f):";
         cin >> cont;
-        cout << endl << endl;
     }
     
 

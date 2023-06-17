@@ -36,5 +36,3 @@ void Membership::printData(){
     cout << endl;    
 }
 
-
-
