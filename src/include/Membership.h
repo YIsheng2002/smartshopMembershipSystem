@@ -21,7 +21,7 @@ public:
     void AddToFront();
     void printData();
 
-    Member* getMid(){
+    /**Member* getMid(){
         int currNum = 0;
         Member* midNode = pHead;
         while (currNum != numMember/2)
@@ -80,10 +80,83 @@ public:
         } 
         
         return pHead;
+    }*/
+
+    Member *merge(Member *a, Member *b)
+    {
+        // base case
+        if(a == NULL)
+            return b;
+        if(b == NULL)
+            return a;
+    
+        // recursive case
+        // take a head pointer
+        Member *c;
+    
+        if(a->age < b->age)
+        {
+            c = a;
+            c->link = merge(a->link, b);
+        }
+        else
+        {
+            c = b;
+            c->link = merge(a, b->link);
+        }
+    
+        return c;
     }
 
-    int num(){
-        return 50;
+    Member *mid_point(Member *head)
+    {
+        // base case
+        if(head == NULL || head->link == NULL)
+            return head;
+    
+        // recursive case
+        Member *fast = head;
+        Member *slow = head;
+    
+        while(fast != NULL && fast->link != NULL)
+        {
+            fast = fast->link;
+    
+            if(fast->link == NULL)
+                break;
+    
+            fast = fast->link;
+            slow = slow->link;
+        }
+    
+        return slow;
+    }
+
+    Member* merge_sort(Member *head)
+    {
+        // base case
+        if(head == NULL || head->link == NULL)
+            return head;
+    
+        // recursive case
+        // Step 1: divide the linked list into
+        // two equal linked lists
+        Member *mid = mid_point(head);
+        Member *a = head;
+        Member *b = mid->link;
+    
+        mid->link = NULL;
+    
+        // Step 2: recursively sort the smaller
+        // linked lists
+        a = merge_sort(a);
+        b = merge_sort(b);
+    
+        // Step 3: merge the sorted linked lists
+        Member *c = merge(a, b);
+
+        pHead = c;
+        return c;
     }
 };
 

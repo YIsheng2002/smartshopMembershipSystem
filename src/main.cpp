@@ -24,9 +24,8 @@ int main(){
             ms1.printData();
             break;
         case 3:
-            cout << ms1.mergeSort(ms1.pHead);
-        case 4:
-            ms1.num();
+            cout << ms1.merge_sort(ms1.pHead);
+            break;
         default: 
             break;
         }
@@ -34,7 +33,6 @@ int main(){
         cout << "Do you want to continue(t/f):";
         cin >> cont;
     }
-    
 
     return 0;
 }
