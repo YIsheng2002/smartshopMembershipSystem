@@ -6,4 +6,4 @@
 void addUserData(LinkedList& linkedList);
 void displayUserData(LinkedList& linkedList);
 
-#endif // USERDATA_H
+#endif
