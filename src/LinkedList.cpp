@@ -19,7 +19,8 @@ void LinkedList::addData(string name, int age) //add new member
     { 
         newNode->id = 1;
         phead = newNode;
-    } else {
+    } else 
+    {
         Node* temp = phead; //temp pointer to traverse the list
         while (temp->pnext != nullptr) 
         {
