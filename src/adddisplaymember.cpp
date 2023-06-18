@@ -1,12 +1,28 @@
 #include <iostream>
 #include "adddisplaymember.h"
-
 using namespace std;
+
+
 
 MembersData::MembersData() 
 {
     phead = nullptr;
 }
+
+
+
+void MembersData::addnewmember() 
+{
+    string name;
+    int age;
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Enter age: ";
+    cin >> age;
+    adddata(name, age);
+}
+
+
 
 void MembersData::adddata(string name, int age) //add new member
 { 
@@ -33,6 +49,9 @@ void MembersData::adddata(string name, int age) //add new member
     cout << "Data sucessfully added!" << endl;
 }
 
+
+
+
 void MembersData::displaymemberdata() 
 {
     ifstream file("membersdata.txt");
@@ -50,6 +69,8 @@ void MembersData::displaymemberdata()
     file.close();
 }
 
+
+
 void MembersData::savedatatofile(int id, string name, int age) 
 {
     ofstream file("membersdata.txt", ios::app);//append to existing content of the file
@@ -58,13 +79,3 @@ void MembersData::savedatatofile(int id, string name, int age)
 }
 
 
-void MembersData::addnewmember() 
-{
-    string name;
-    int age;
-    cout << "Enter name: ";
-    cin >> name;
-    cout << "Enter age: ";
-    cin >> age;
-    adddata(name, age);
-}
