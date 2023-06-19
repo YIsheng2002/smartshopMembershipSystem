@@ -5,23 +5,39 @@ using namespace std;
 Membership::Membership(){
     numMember = 0;
     pHead = 0;
+    pTail = pHead;
 }
 
 Membership::~Membership(){}
 
-void Membership::AddToFront(){
-    string name;
+
+void Membership::AddMember(){
+    string name, phoneNo, address, startDate, endDate;
     int age;
     Member *pNew = new Member;
     cout << "Enter member's name: ";
     cin >> name;
     cout << "Enter member's age: ";
     cin >> age;
-    pNew->memberID = ++numMember;
+    cout << "Enter member's phone number: ";
+    cin >> phoneNo;
+    cout << "Enter member's address: ";
+    cin >> address;
+    cout << "Enter member's startDate: ";
+    cin >> startDate;
+    cout << "Enter member's endDate: ";
+    cin >> endDate;
+    pNew->memberID = ++numMember; 
     pNew->name = name;
     pNew->age = age;
-    pNew->link = pHead;
-    pHead = pNew;
+    if(pHead == 0){
+        pHead = pNew;
+        pTail = pHead;
+    } else{
+        pTail->link = pNew;
+        pTail = pNew;
+    }
+    cout << "Data sucessfully added!" << endl;
 }
 
 void Membership::printData(){

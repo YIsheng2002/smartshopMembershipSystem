@@ -7,18 +7,19 @@ private:
     class Member{
         public:
             int memberID, age;
-            std::string name;
+            std::string name, phoneNo, address, startDate, endDate;
             Member* link;
     };
 
 public:
     Member *pHead;
     Member *pCurr;
+    Member *pTail;
     int numMember;
 
     Membership();
     ~Membership();
-    void AddToFront();
+    void AddMember();
     void printData();
 
     /**Member* getMid(){

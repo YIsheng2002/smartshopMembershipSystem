@@ -18,7 +18,7 @@ int main(){
         switch (choice)
         {
         case 1:
-            ms1.AddToFront();
+            ms1.AddMember();
             break;
         case 2:
             ms1.printData();
