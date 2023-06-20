@@ -16,6 +16,7 @@ private:
 
     Member *pHead;
     Member *pCurr;
+    Member *pTail;
     int numMember;
 
 public:
@@ -25,6 +26,7 @@ public:
     void printData();
     void SearchMember();
     void DeleteMember();
+    void DeleteAllMember();
 };
 
 #endif

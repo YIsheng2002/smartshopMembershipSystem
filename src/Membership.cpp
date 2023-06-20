@@ -7,6 +7,7 @@ using namespace std;
 Membership::Membership(){
     numMember = 0;
     pHead = 0;
+    pTail = 0;
 }
 
 //Destructor
@@ -33,8 +34,9 @@ void Membership::printData(){
     pCurr = pHead;
     while (pCurr != nullptr)
     {
-        cout << "id:" << pCurr->memberID << '\t' << "name:" << 
-        pCurr->name << '\t' << "age:" << pCurr->age << endl;
+        cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+        << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
+        << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
         pCurr = pCurr->link;
     }
 }
@@ -191,5 +193,10 @@ void Membership::DeleteMember(){
     }
 }
 
-
+void Membership::DeleteAllMember()
+{
+    pHead = 0;
+    pCurr = pTail = pHead;
+    numMember = 0;
+}
 
