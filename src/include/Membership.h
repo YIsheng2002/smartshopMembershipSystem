@@ -21,6 +21,9 @@ public:
     ~Membership();
     void AddMember();
     void printData();
+    void searchMember();
+    void deleteMember();
+    void deleteAllMember();
 
     /**Member* getMid(){
         int currNum = 0;
