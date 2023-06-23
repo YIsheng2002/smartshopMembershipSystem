@@ -42,7 +42,7 @@ int main(){
     
     file.close();
 
-    ms1.printData();
+    ms1.SearchMember();
 
     return 0;
 }

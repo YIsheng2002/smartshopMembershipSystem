@@ -19,6 +19,10 @@ private:
     Member *pTail;
     int numMember;
 
+    bool searchID();
+    bool searchName();
+    bool searchAge();
+    
 public:
     Membership();
     ~Membership();
