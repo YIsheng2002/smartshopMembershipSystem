@@ -1,51 +1,33 @@
-#include <iostream>
 #include "adddisplaymember.h"
+#include <iostream>
 #include <fstream>
-#include <sstream>
 #include <limits>
-
-using namespace std;
 
 MembersData::MembersData() {
     phead = nullptr;
 }
 
 void MembersData::addnewmember() {
-    string name;
-    int age;
-    string tel;
-    string address;
-    string datein;
-    string dateout;
-
-    cout << "Enter name: ";
-    cin.ignore();
-    getline(cin, name);
-    cout << "Enter age: ";
-    cin >> age;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << "Enter phone number: ";
-    getline(cin, tel);
-    cout << "Enter address: ";
-    getline(cin, address);
-    cout << "Enter date registered: ";
-    getline(cin, datein);
-    cout << "Enter expiration date: ";
-    getline(cin, dateout);
-
-    adddata(name, age, tel, address, datein, dateout);
-}
-
-void MembersData::adddata(string name, int age, string tel, string address, string datein, string dateout) {
     Node* newNode = new Node;
-    newNode->name = name;
-    newNode->age = age;
-    newNode->tel = tel;
-    newNode->datein = datein;
-    newNode->dateout = dateout;
-    newNode->address = address;
     newNode->pnext = nullptr;
 
+    // Read member details from the user
+    cout << "Enter name: ";
+    cin.ignore();
+    getline(cin, newNode->name);
+    cout << "Enter age: ";
+    cin >> newNode->age;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Enter phone number: ";
+    getline(cin, newNode->tel);
+    cout << "Enter address: ";
+    getline(cin, newNode->address);
+    cout << "Enter date registered: ";
+    getline(cin, newNode->datein);
+    cout << "Enter expiration date: ";
+    getline(cin, newNode->dateout);
+
+    // Assign an ID to the new member and update the linked list
     if (phead == nullptr) {
         newNode->id = 1;
         phead = newNode;
@@ -89,7 +71,7 @@ void MembersData::readdatafromfile(const string& filename) {
         return;
     }
 
-    clearlinkedlist(); // Clear the existing linked list before updating
+    clearlinkedlist();
 
     int id;
     string name;
@@ -100,12 +82,14 @@ void MembersData::readdatafromfile(const string& filename) {
     string dateout;
     string line;
 
+    Node* prevNode = nullptr;
+
     while (getline(file, line)) {
         if (line.empty()) {
-            continue; // Skip empty lines
+            continue;
         }
 
-        id = stoi(line);// Read the member's ID
+        id = stoi(line);
 
         getline(file, name);
         file >> age;
@@ -116,10 +100,25 @@ void MembersData::readdatafromfile(const string& filename) {
         getline(file, datein);
         getline(file, dateout);
 
-        adddata(name, age, tel, address, datein, dateout);
+        Node* newNode = new Node;
+        newNode->id = id;
+        newNode->name = name;
+        newNode->age = age;
+        newNode->tel = tel;
+        newNode->address = address;
+        newNode->datein = datein;
+        newNode->dateout = dateout;
+        newNode->pnext = nullptr;
 
-        // Skip the separator line "------"
-        getline(file, line);
+        if (prevNode == nullptr) {
+            phead = newNode;
+        } else {
+            prevNode->pnext = newNode;
+        }
+
+        prevNode = newNode;
+
+        getline(file, line); // Skip the separator line "------"
     }
 
     file.close();
@@ -156,5 +155,5 @@ void MembersData::clearlinkedlist() {
         temp = nextNode;
     }
 
-    phead = nullptr; // Set the head pointer to null after clearing the list
+    phead = nullptr;
 }
