@@ -31,6 +31,8 @@ public:
     void SearchMember();
     void DeleteMember();
     void DeleteAllMember();
+    bool readFile(std::string);
+    bool writeFile(std::string);
 };
 
 #endif

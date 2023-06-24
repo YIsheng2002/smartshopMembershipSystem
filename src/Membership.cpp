@@ -1,6 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include ".\include\Membership.h"
+#include <fstream>
+#include <ostream>
+
 using namespace std;
 
 //Contructor
@@ -32,6 +35,11 @@ std::string address, std::string startDate, std::string endDate){
 
 void Membership::printData(){   
     pCurr = pHead;
+
+    cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+    << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
+    << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
+
     while (pCurr != nullptr)
     {
         cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
@@ -233,4 +241,77 @@ bool Membership::searchAge()
         pCurr = pCurr->link;
     }
     return found;
+}
+
+// Written by Emanuel Ling Hao En
+// read the data from the file
+bool Membership::readFile(std::string fileName)
+{
+    std::string memberID, age, name, phoneNo, address, startDate, endDate, split;    
+
+    std::ifstream file(fileName);
+
+
+    // if fail to open the file, return false
+    if (!file.is_open()) 
+    {
+        cout << "Fail to open the file" << endl;
+        return false;
+    }
+
+    while (true)
+    {
+        // if not read the split line means that already reach the end of line, break the loop
+        if(!std::getline(file, split))
+        {
+            break;
+        }
+
+        // read the data from the file
+        std::getline(file, memberID);
+        std::getline(file, name); 
+        std::getline(file, age);
+        std::getline(file, phoneNo);
+        std::getline(file, address);
+        std::getline(file, startDate);
+        std::getline(file, endDate);
+    
+        AddMember(stoi(memberID), name, stoi(age), phoneNo, address, startDate, endDate);
+    }
+    
+    file.close();
+    return true;
+}
+
+// Written by Emanuel Ling Hao En
+// Write the date to the file
+bool Membership::writeFile(string fileName)
+{
+    std::ofstream file(fileName);
+
+    // if fail to open the file, return false
+    if (!file.is_open()) 
+    {
+        cout << "Fail to open the file" << endl;
+        return false;
+    }
+
+    pCurr = pHead;
+
+    // while no reach the end of the linked list
+    while (pCurr != nullptr)
+    {
+        // write the data into the file
+        file << "-------------------------------\n";
+        file << pCurr->memberID << "\n";
+        file << pCurr->name << "\n";
+        file << pCurr->age << "\n";
+        file << pCurr->phoneNo << "\n";
+        file << pCurr->address << "\n";
+        file << pCurr->startDate << "\n";
+        file << pCurr->endDate << "\n";
+        pCurr = pCurr->link;
+    }
+    cout << "file saved" << endl;
+    return true;
 }

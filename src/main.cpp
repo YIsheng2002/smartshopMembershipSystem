@@ -1,8 +1,6 @@
 #include <iostream>
 #include ".\include\Membership.h"
-#include <fstream>
-#include <sstream>
-#include <ostream>
+
 using namespace std;
 
 int main(){
@@ -10,39 +8,25 @@ int main(){
     int choice;
     Membership ms1;
 
-    std::string memberID, age, name, phoneNo, address, startDate, endDate, split;    
-
-    std::ifstream file("membersdata.txt");
-
-
-    if (!file.is_open()) 
+    if(!ms1.readFile("membersdata.txt"))
     {
-        cout<<"error"<<endl;
         return 0;
     }
 
-    while (true)
+    ms1.printData();
+    cout << endl << endl;
+
+    /*
+    ms1.AddMember(198, "Clement Ho", 30, "60192287453", "789 Jalan Bukit Bintang, 55100",
+    "08/03/2022", "08/03/2023");
+
+    if(!ms1.writeFile("membersdata.txt"))
     {
-        if(!std::getline(file, split))
-        {
-            break;
-        }
-
-        std::getline(file, memberID);
-        std::getline(file, name); 
-        std::getline(file, age);
-        std::getline(file, phoneNo);
-        std::getline(file, address);
-        std::getline(file, startDate);
-        std::getline(file, endDate);
-        
-        ms1.AddMember(std::stoi(memberID), name, std::stoi(age), phoneNo, address,
-        startDate, endDate);
+        return 0;
     }
-    
-    file.close();
 
-    ms1.SearchMember();
+    ms1.printData();
+    */
 
     return 0;
 }
