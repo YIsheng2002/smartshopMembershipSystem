@@ -16,75 +16,94 @@ public:
     Member *pCurr;
     Member *pTail;
     int numMember;
+    int sortType;
 
     Membership();
     ~Membership();
-    void AddMember();
+    void GetData();
+    void AddMember(int, std::string, int, std::string, std::string, std::string, std::string);
     void printData();
     void searchMember();
     void deleteMember();
     void deleteAllMember();
-
-    /**Member* getMid(){
-        int currNum = 0;
-        Member* midNode = pHead;
-        while (currNum != numMember/2)
+    
+    Member *mergeID(Member *a, Member *b)
+    {
+        // base case
+        if(a == NULL)
+            return b;
+        if(b == NULL)
+            return a;
+    
+        // recursive case
+        // take a head pointer
+        Member *c;
+    
+        if(a->memberID < b->memberID)
         {
-            midNode = midNode->link;
-            currNum++;
+            c = a;
+            c->link = mergeID(a->link, b);
         }
-        return midNode;
+        else
+        {
+            c = b;
+            c->link = mergeID(a, b->link);
+        }
+    
+        return c;
     }
 
-    Member* merge(Member* firstHalf, Member* secondHalf){
-        Member* mergedList;
-        if (firstHalf->age < secondHalf->age){
-            mergedList = firstHalf;
-            firstHalf = firstHalf->link;
-        } else {
-            mergedList = secondHalf;
-            secondHalf = secondHalf->link;
-        }
-        pCurr = mergedList;
-
-        while (firstHalf != NULL && secondHalf != NULL){
-            if(firstHalf->age < secondHalf->age){
-                mergedList = firstHalf;
-                firstHalf = firstHalf->link;
-            }else {
-            mergedList = secondHalf;
-            secondHalf = secondHalf->link;
-            }
-        }
-
-        while (firstHalf != NULL){
-            pCurr->link = pHead;
-            firstHalf = firstHalf->link;
-            pCurr = pCurr->link;
-        }
-        while (secondHalf != NULL)
+    Member *mergeAge(Member *a, Member *b)
+    {
+        // base case
+        if(a == NULL)
+            return b;
+        if(b == NULL)
+            return a;
+    
+        // recursive case
+        // take a head pointer
+        Member *c;
+    
+        if(a->age < b->age)
         {
-            pCurr->link = secondHalf;
-            secondHalf = secondHalf->link;
-            pCurr = pCurr->link;
+            c = a;
+            c->link = mergeAge(a->link, b);
         }
-        
-        return mergedList;
+        else
+        {
+            c = b;
+            c->link = mergeAge(a, b->link);
+        }
+    
+        return c;
     }
 
-    Member* mergeSort( Member *firstNode){
-        while (firstNode != NULL)
+    Member *mergeName(Member *a, Member *b)
+    {
+        // base case
+        if(a == NULL)
+            return b;
+        if(b == NULL)
+            return a;
+    
+        // recursive case
+        // take a head pointer
+        Member *c;
+    
+        if(a->name.compare(b->name)>=0)
         {
-            Member* midNode = getMid();
-            Member* secondHalf = mergeSort(midNode->link);
-            midNode->link = NULL;
-            Member* firstHalf = mergeSort(pHead);
-            return merge(firstHalf,secondHalf);
-            pCurr = pHead;  
-        } 
-        
-        return pHead;
-    }*/
+            c = a;
+            c->link = mergeName(a->link, b);
+        }
+        else
+        {
+            c = b;
+            c->link = mergeName(a, b->link);
+        }
+    
+        return c;
+    }
 
     Member *merge(Member *a, Member *b)
     {
@@ -155,12 +174,33 @@ public:
         // linked lists
         a = merge_sort(a);
         b = merge_sort(b);
+
+        Member *c;
     
         // Step 3: merge the sorted linked lists
-        Member *c = merge(a, b);
+        if(sortType == 1){
+            c = mergeID(a, b);
+        } else if(sortType == 2){
+            c = mergeName(a, b);
+        } else if(sortType == 3){
+            c = mergeAge(a, b);
+        }
 
         pHead = c;
         return c;
+    }
+
+    void sortMenu(){
+        int c;
+        std::cout << "Sort by:\n";
+        std::cout << "1. Member ID\n";
+        std::cout << "2. Member Name\n";
+        std::cout << "3. Member Age\n";
+        std::cout << "Enter your choice: (1/2/3)\n";
+        std::cin >> c;
+
+        sortType = c;
+        merge_sort(pHead);  
     }
 };
 

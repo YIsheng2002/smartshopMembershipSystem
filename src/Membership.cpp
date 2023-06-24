@@ -11,13 +11,13 @@ Membership::Membership(){
 
 Membership::~Membership(){}
 
-//Name:Yasrizal Hakim Bin Yaresham
-//This function is to add new member to the end of the linked list
-void Membership::AddMember(){
+
+void Membership::GetData(){
     string name, phoneNo, address, startDate, endDate;
-    int age;
-    Member *pNew = new Member;
+    int memberID, age;
     //get user input
+    cout << "Enter member's member ID: ";
+    cin >> memberID;
     cout << "Enter member's name: ";
     cin >> name;
     cout << "Enter member's age: ";
@@ -30,10 +30,21 @@ void Membership::AddMember(){
     cin >> startDate;
     cout << "Enter member's endDate: ";
     cin >> endDate;
+    AddMember(memberID, name, age, phoneNo, address, startDate, endDate);
+}
+
+//Name:Yasrizal Hakim Bin Yaresham
+//This function is to add new member to the end of the linked list
+void Membership::AddMember(int memberID, string name, int age, string phoneNo, string address, string startDate, string endDate){
     //add data into Node of linked list
-    pNew->memberID = ++numMember; 
+    Member *pNew = new Member;
+    pNew->memberID = memberID; 
     pNew->name = name;
     pNew->age = age;
+    pNew->phoneNo = phoneNo;
+    pNew->address = address;
+    pNew->startDate = startDate;
+    pNew->endDate = endDate;
     if(pHead == 0){
         pHead = pNew;
         pTail = pHead;
@@ -55,7 +66,7 @@ void Membership::printData(){
         cout << "Member's age : " << pCurr->age << endl;
         pCurr = pCurr->link;
     }
-    cout << endl;    
+    cout << endl;
 }
 
 // Written by Emanuel Ling Hao En

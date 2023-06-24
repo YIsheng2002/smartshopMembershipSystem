@@ -18,13 +18,13 @@ int main(){
         switch (choice)
         {
         case 1:
-            ms1.AddMember();
+            ms1.GetData();
             break;
         case 2:
             ms1.printData();
             break;
         case 3:
-            cout << ms1.merge_sort(ms1.pHead);
+            ms1.sortMenu();
             break;
         default: 
             break;
@@ -33,6 +33,6 @@ int main(){
         cout << "Do you want to continue(t/f):";
         cin >> cont;
     }
-
+    
     return 0;
 }
