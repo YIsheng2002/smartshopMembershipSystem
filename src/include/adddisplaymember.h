@@ -13,7 +13,6 @@ struct Node {
     string address;
     string datein;
     string dateout;
-    
     Node* pnext;
 };
 
@@ -23,12 +22,9 @@ public:
 
     MembersData();
     void addnewmember();
-    void adddata(string name, int age, string tel, string address, string datein, string dateout);
     void displaydata();
     void readdatafromfile(const string& filename);
     void savedatatofile(const string& filename);
-    
-    //void displaymemberdata(const string& filename);
     void clearlinkedlist();
 };
 
