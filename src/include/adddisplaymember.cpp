@@ -1,4 +1,4 @@
-#include "adddisplaymembers.h"
+#include "adddisplaymember.h"
 #include <iostream>
 #include <fstream>
 #include <limits>
@@ -11,21 +11,23 @@ void MembersData::addnewmember() {
     Node* newNode = new Node;
     newNode->pnext = nullptr;
 
+    // Read member details from the user
     cout << "Enter name: ";
     cin.ignore();
-    getline(cin, newNode->data[0]);
+    getline(cin, newNode->name);
     cout << "Enter age: ";
-    cin >> newNode->data[1];
+    cin >> newNode->age;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Enter phone number: ";
-    getline(cin, newNode->data[2]);
+    getline(cin, newNode->tel);
     cout << "Enter address: ";
-    getline(cin, newNode->data[3]);
+    getline(cin, newNode->address);
     cout << "Enter date registered: ";
-    getline(cin, newNode->data[4]);
+    getline(cin, newNode->datein);
     cout << "Enter expiration date: ";
-    getline(cin, newNode->data[5]);
+    getline(cin, newNode->dateout);
 
+    // Assign an ID to the new member and update the linked list
     if (phead == nullptr) {
         newNode->id = 1;
         phead = newNode;
@@ -49,12 +51,12 @@ void MembersData::displaydata() {
     Node* temp = phead;
     while (temp != nullptr) {
         cout << temp->id << endl
-             << temp->data[0] << endl
-             << temp->data[1] << endl
-             << temp->data[2] << endl
-             << temp->data[3] << endl
-             << temp->data[4] << endl
-             << temp->data[5] << endl
+             << temp->name << endl
+             << temp->age << endl
+             << temp->tel << endl
+             << temp->address << endl
+             << temp->datein << endl
+             << temp->dateout << endl
              << "-------------------------------------" << endl;
         temp = temp->pnext;
     }
@@ -71,30 +73,52 @@ void MembersData::readdatafromfile(const string& filename) {
 
     clearlinkedlist();
 
-    int id = 1;
+    int id;
+    string name;
+    int age;
+    string tel;
+    string address;
+    string datein;
+    string dateout;
     string line;
-    while (getline(file, line)) {
-        Node* newNode = new Node;
-        newNode->id = id++;
 
-        for (int i = 0; i < 6; ++i) {
-            getline(file, newNode->data[i]);
+    Node* prevNode = nullptr;
+
+    while (getline(file, line)) {
+        if (line.empty()) {
+            continue;
         }
 
+        id = stoi(line);
+
+        getline(file, name);
+        file >> age;
+        file.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        getline(file, tel);
+        getline(file, address);
+        getline(file, datein);
+        getline(file, dateout);
+
+        Node* newNode = new Node;
+        newNode->id = id;
+        newNode->name = name;
+        newNode->age = age;
+        newNode->tel = tel;
+        newNode->address = address;
+        newNode->datein = datein;
+        newNode->dateout = dateout;
         newNode->pnext = nullptr;
 
-        if (phead == nullptr) {
+        if (prevNode == nullptr) {
             phead = newNode;
         } else {
-            Node* temp = phead;
-            while (temp->pnext != nullptr) {
-                temp = temp->pnext;
-            }
-            temp->pnext = newNode;
+            prevNode->pnext = newNode;
         }
 
-        // Skip the separator line "------"
-        getline(file, line);
+        prevNode = newNode;
+
+        getline(file, line); // Skip the separator line "------"
     }
 
     file.close();
@@ -109,11 +133,14 @@ void MembersData::savedatatofile(const string& filename) {
 
     Node* temp = phead;
     while (temp != nullptr) {
-        file << temp->id << "\n";
-        for (int i = 0; i < 6; ++i) {
-            file << temp->data[i] << "\n";
-        }
-        file << "------" << "\n";
+        file << temp->id << "\n"
+             << temp->name << "\n"
+             << temp->age << "\n"
+             << temp->tel << "\n"
+             << temp->address << "\n"
+             << temp->datein << "\n"
+             << temp->dateout << "\n"
+             << "------" << "\n";
         temp = temp->pnext;
     }
 
