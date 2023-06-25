@@ -23,9 +23,16 @@ public:
     void GetData();
     void AddMember(int, std::string, int, std::string, std::string, std::string, std::string);
     void printData();
-    void searchMember();
+    void SearchMember();
     void deleteMember();
     void deleteAllMember();
+    bool searchID();
+    bool searchName();
+    bool searchAge();
+    bool readFile(std::string);
+    bool writeFile(std:: string);
+
+
     
     Member *mergeID(Member *a, Member *b)
     {
