@@ -47,16 +47,16 @@ int main(){
     return 0;
 }
 
-    void printMenu() {
-        std::cout << "MENU"<< endl;
-        std::cout << "______________________"<< endl;
-        std::cout << "1. Add Member" << endl;
-        std::cout << "2. Display Member" << endl;
-        std::cout << "3. Delete Member" << endl;
-        std::cout << "4. Search Member" << endl;
-        std::cout << "5. Sort Member"<< endl;
-        std::cout << "6. Save to file" << endl;
-        std::cout << "7. Delete All Member" << endl;
-        std::cout << "8. Exit"<< endl;
-        std::cout << "______________________"<< endl;
-    }
+void printMenu(){
+    std::cout << "Menu\n";
+    std::cout << "_____________________\n";
+    std::cout << "1. Add Member\n";
+    std::cout << "2. Display Member\n";
+    std::cout << "3. Delete Member\n";
+    std::cout << "4. Search Member\n";
+    std::cout << "5. Sort Member\n";
+    std::cout << "6. Save to File\n";
+    std::cout << "7. Delete All Member\n";
+    std::cout << "8. Exit\n";
+    std::cout << "______________________\n";
+}
