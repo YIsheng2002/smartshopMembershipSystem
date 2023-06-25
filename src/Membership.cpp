@@ -35,21 +35,21 @@ void Membership::GetData(){
     std::cout << "Enter member's endDate: \n";
     std::cin >> endDate;
     
-    bool exist = false;
+    /*bool exist = false;
     pCurr = pHead;
     while (pCurr != nullptr)
     {
         if (pCurr->memberID == memberID){
             exist = true;
-        } 
+        }
     }
-    if (exist)
+    if(exist == true)
     {
         cout << "This member id already exists.\n";
         cout << "Please enter a valid ID.\n\n";
     } else {
         AddMember(memberID, name, age, phoneNo, address, startDate, endDate);
-    }
+    }*/
     
 }
 

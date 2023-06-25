@@ -33,7 +33,8 @@ public:
     bool writeFile(std:: string);
 
 
-    
+    //written by Heng Yi Sheng
+    //merge by Member's id(when user choose sort by ID)
     Member *mergeID(Member *a, Member *b)
     {
         // base case
@@ -60,6 +61,8 @@ public:
         return c;
     }
 
+    //written by Heng Yi Sheng
+    //merge by Member's id(when user choose sort by AGE)
     Member *mergeAge(Member *a, Member *b)
     {
         // base case
@@ -86,6 +89,8 @@ public:
         return c;
     }
 
+    //written by Heng Yi Sheng
+    //merge by Member's id(when user choose sort by NAME)
     Member *mergeName(Member *a, Member *b)
     {
         // base case
@@ -112,32 +117,8 @@ public:
         return c;
     }
 
-    Member *merge(Member *a, Member *b)
-    {
-        // base case
-        if(a == NULL)
-            return b;
-        if(b == NULL)
-            return a;
-    
-        // recursive case
-        // take a head pointer
-        Member *c;
-    
-        if(a->age < b->age)
-        {
-            c = a;
-            c->link = merge(a->link, b);
-        }
-        else
-        {
-            c = b;
-            c->link = merge(a, b->link);
-        }
-    
-        return c;
-    }
-
+    //written by Heng Yi Sheng
+    //find the mid node for sorting purpose
     Member *mid_point(Member *head)
     {
         // base case
@@ -162,6 +143,8 @@ public:
         return slow;
     }
 
+    //written by Heng Yi Sheng
+    //merge sort
     Member* merge_sort(Member *head)
     {
         // base case
@@ -169,7 +152,7 @@ public:
             return head;
     
         // recursive case
-        // Step 1: divide the linked list into
+        // divide the linked list into
         // two equal linked lists
         Member *mid = mid_point(head);
         Member *a = head;
@@ -177,14 +160,14 @@ public:
     
         mid->link = NULL;
     
-        // Step 2: recursively sort the smaller
+        // recursively sort the smaller
         // linked lists
         a = merge_sort(a);
         b = merge_sort(b);
 
         Member *c;
     
-        // Step 3: merge the sorted linked lists
+        // merge the sorted linked lists
         if(sortType == 1){
             c = mergeID(a, b);
         } else if(sortType == 2){
@@ -197,6 +180,8 @@ public:
         return c;
     }
 
+    //written by Heng Yi Sheng
+    //print sort menu and get user choice
     void sortMenu(){
         int c;
         std::cout << "Sort by:\n";

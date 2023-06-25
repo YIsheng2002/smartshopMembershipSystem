@@ -24,15 +24,20 @@ int main(){
             ms1.printData();
             break;
         case 3:
+            ms1.deleteMember();
+        case 4:
             ms1.SearchMember();
             break;
-        case 4:
+        case 5:
             ms1.sortMenu();
             break;
-        case 5:
+        case 6:
             ms1.writeFile(filename);
             break;
-        case 6:
+        case 7:
+            ms1.deleteAllMember();
+            break;
+        case 8:
             cont= 'f';
         default: 
             std::cout << "Invalid input pls enter the number in the menu.";
@@ -44,10 +49,14 @@ int main(){
 
     void printMenu() {
         std::cout << "MENU"<< endl;
+        std::cout << "______________________"<< endl;
         std::cout << "1. Add Member" << endl;
         std::cout << "2. Display Member" << endl;
-        std::cout << "3. Search Member" << endl;
-        std::cout << "4. Sort Member"<< endl;
-        std::cout << "5. Save to file" << endl;
-        std::cout << "6. Exit"<< endl;
+        std::cout << "3. Delete Member" << endl;
+        std::cout << "4. Search Member" << endl;
+        std::cout << "5. Sort Member"<< endl;
+        std::cout << "6. Save to file" << endl;
+        std::cout << "7. Delete All Member" << endl;
+        std::cout << "8. Exit"<< endl;
+        std::cout << "______________________"<< endl;
     }
