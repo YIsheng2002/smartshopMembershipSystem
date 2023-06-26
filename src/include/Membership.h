@@ -103,7 +103,7 @@ public:
         // take a head pointer
         Member *c;
     
-        if(a->name.compare(b->name)>=0)
+        if(a->name.compare(b->name)<=0)
         {
             c = a;
             c->link = mergeName(a->link, b);
@@ -177,6 +177,7 @@ public:
         }
 
         pHead = c;
+          
         return c;
     }
 
@@ -192,7 +193,8 @@ public:
         std::cin >> c;
 
         sortType = c;
-        merge_sort(pHead);  
+        merge_sort(pHead);
+        printData();  
     }
 };
 

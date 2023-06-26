@@ -9,6 +9,7 @@ int main(){
     string filename = "membershipList";
     int choice;
     Membership ms1;
+    cout << "Welcome to Smartshop Membership System\n\n";
 
     ms1.readFile(filename);
     while (cont!='f')
@@ -25,6 +26,7 @@ int main(){
             break;
         case 3:
             ms1.deleteMember();
+            break;
         case 4:
             ms1.SearchMember();
             break;
@@ -39,6 +41,7 @@ int main(){
             break;
         case 8:
             cont= 'f';
+            break;
         default: 
             std::cout << "Invalid input pls enter the number in the menu.";
             break;
