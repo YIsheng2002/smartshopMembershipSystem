@@ -5,7 +5,7 @@ using namespace std;
 void printMenu();
 
 int main(){
-    char cont = 't';
+    char cont = 't'; 
     string filename = "membershipList";
     int choice;
     Membership ms1;
@@ -50,6 +50,7 @@ int main(){
     return 0;
 }
 
+// display menu 
 void printMenu(){
     std::cout << "Menu\n";
     std::cout << "_____________________\n";

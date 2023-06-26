@@ -5,15 +5,18 @@
 
 using namespace std;
 
+//Constructor
 Membership::Membership(){
     numMember = 0;
     pHead = 0;
     pTail = pHead;
 }
 
+//Destructor
 Membership::~Membership(){}
 
-
+//Name:Yasrizal Hakim Bin Yaresham
+//This function is to get new member data
 void Membership::GetData(){
     string name, phoneNo, address, startDate, endDate;
     int memberID, age;
@@ -237,7 +240,7 @@ bool Membership::searchAge()
     return found;
 }
 
-// Written by Emanuel Ling Hao En
+// Written by Mohamad Azri bin Azman
 // read the data from the file
 bool Membership::readFile(string fileName)
 {
@@ -275,7 +278,7 @@ bool Membership::readFile(string fileName)
     return true;
 }
 
-// Written by Emanuel Ling Hao En
+// Written by Mohamad Azri bin Azman
 // Write the date to the file
 bool Membership::writeFile(string fileName)
 {
@@ -348,6 +351,8 @@ void Membership::deleteMember(){
     }
 }
 
+// Written by Emanuel Ling Hao En
+// Delete all member by memberID
 void Membership::deleteAllMember()
 {
     pHead = 0;
