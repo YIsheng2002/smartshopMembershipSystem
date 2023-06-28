@@ -41,11 +41,15 @@ int main(){
             break;
         case 8:
             cont= 'f';
+            std::cout << "Thank you for using our system. See you next time";
             break;
         default: 
             std::cout << "Invalid input pls enter the number in the menu.";
             break;
         }
+        std::cin.clear();
+        std::cin.sync();
+        std::cout << "\n\n";
     }  
     return 0;
 }

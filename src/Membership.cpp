@@ -20,29 +20,16 @@ Membership::~Membership(){}
 void Membership::GetData(){
     string name, phoneNo, address, startDate, endDate;
     int memberID, age;
+    bool exist = false; //member ID exist or not
     //get user input
     std::cout << "Enter member's member ID: \n";
     std::cin >> memberID;
-    std::cout << "Enter member's name: \n";
-    std::cin.ignore();
-    std::getline(std::cin,name);
-    std::cout << "Enter member's age: \n";
-    std::cin >> age;
-    std::cout << "Enter member's phone number: \n";
-    std::cin >> phoneNo;
-    std::cout << "Enter member's address: \n";
-    std::cin.ignore();
-    std::getline(std::cin,address);
-    std::cout << "Enter member's startDate: \n";
-    std::cin >> startDate;
-    std::cout << "Enter member's endDate: \n";
-    std::cin >> endDate;
-    
-    bool exist = false;
+
     pCurr = pHead;
+    //loop to run through linked list
     while (pCurr != nullptr)
     {
-        if (pCurr->memberID == memberID){
+        if (pCurr->memberID == memberID){ //check is member ID exists
             exist = true;
             break;
         }
@@ -50,12 +37,33 @@ void Membership::GetData(){
     }
     if(exist == true)
     {
-        cout << "This member id already exists.\n";
-        cout << "Please enter a valid ID.\n\n";
-    } else {
-        AddMember(memberID, name, age, phoneNo, address, startDate, endDate);
-    }
+        std::cout << "This member id already exists.\n";
+        std::cout << "Please enter a valid ID.\n\n";
+        
+    } else{ 
+
+    std::cout << "Enter member's name: \n";
+    std::cin.ignore();
+    std::getline(std::cin,name);
+    std::cout << "Enter member's age: \n";
+    std::cin >> age;
+    std::cout << "Enter member's phone number: \n";
+    std::cin.ignore();
+    std::getline(std::cin,phoneNo);
+    std::cout << "Enter member's address: \n";
+    std::cin.ignore();
+    std::getline(std::cin,address);
+    std::cout << "Enter member's startDate: \n";
+    std::cin.ignore();
+    std::getline(std::cin,startDate);
+    std::cout << "Enter member's endDate: \n";
+    std::cin.ignore();
+    std::getline(std::cin,endDate);
     
+    
+    AddMember(memberID, name, age, phoneNo, address, startDate, endDate);
+    std::cout << "Member add successfully. Thank you.";
+    }
 }
 
 //Name:Yasrizal Hakim Bin Yaresham
@@ -76,6 +84,7 @@ void Membership::AddMember(int memberID, string name, int age, string phoneNo, s
     } else{
         pTail->link = pNew;
         pTail = pNew;
+        pTail->link = nullptr;
     }
 }
 
@@ -84,13 +93,13 @@ void Membership::AddMember(int memberID, string name, int age, string phoneNo, s
 void Membership::printData(){   
     pCurr = pHead;
 
-    cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+    std::cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
     << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
     << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
 
     while (pCurr != nullptr)
     {
-        cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+        std::cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
         << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
         << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
         pCurr = pCurr->link;
@@ -103,8 +112,8 @@ void Membership::SearchMember(){
     char option;
     string target;
     bool found = false, valid = true;
-    cout << "Search by: a) MemberID  b) name  c) age" << endl;
-    cin >> option;
+    std::cout << "Search by: a) MemberID  b) name  c) age" << endl;
+    std::cin >> option;
 
     if (option == 'a' || option == 'A') // search by memberID
     {
@@ -123,13 +132,13 @@ void Membership::SearchMember(){
 
     else // user not enter option a, b or c
     {
-        cout << "Please enter the valid option" << endl;
+        std::cout << "Please enter the valid option" << endl;
         valid = false;
     }
 
     if (!found && valid) // user enter the valid option but have not found the target data
     {
-        cout << "No Data found" << endl;
+        std::cout << "No Data found" << endl;
     }
 }
 
@@ -140,8 +149,8 @@ bool Membership::searchID()
     int target_id;
     bool found = false, haveTitle = false;
 
-    cout << "Please enter target member id: ";
-    cin >> target_id;
+    std::cout << "Please enter target member id: ";
+    std::cin >> target_id;
         
     pCurr = pHead;
     while (pCurr != nullptr)
@@ -150,13 +159,13 @@ bool Membership::searchID()
         {
             if (!haveTitle)
             {
-                cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                std::cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
                 << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
                 << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
                 haveTitle = true; 
             }
             // display the MemberID, name and age of the Member
-            cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+            std::cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
             << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
             << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
             found = true;
@@ -177,8 +186,8 @@ bool Membership::searchName()
     std::string target;
     bool haveTitle = false, found = false;
 
-    cout << "Please enter the target name: ";
-    cin >> target;
+    std::cout << "Please enter the target name: ";
+    std::cin >> target;
 
     size_t index;
     pCurr = pHead;
@@ -191,13 +200,13 @@ bool Membership::searchName()
         {
             if (!haveTitle)
             {
-                cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                std::cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
                 << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
                 << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
                 haveTitle = true; 
             }
             // display the MemberID, name and age of the Member
-            cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+            std::cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
             << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
             << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
             found = true;
@@ -214,8 +223,8 @@ bool Membership::searchAge()
     int target_age;
     bool haveTitle = false, found = false;
 
-    cout << "Please enter the target age: ";
-    cin >> target_age;
+    std::cout << "Please enter the target age: ";
+    std::cin >> target_age;
 
     pCurr = pHead;
     while (pCurr != nullptr)
@@ -224,13 +233,13 @@ bool Membership::searchAge()
         {
             if (!haveTitle)
             {
-                cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
+                std::cout << setw(10) << "Member ID" << setw(20) << "Name" << setw(10) 
                 << "Age" << setw(20) << "Phone Number" << setw(50) << "Address" 
                 << setw(20) << "Start Date" << setw(20) << "End Date" << endl;
                 haveTitle = true; 
             }
             // display the MemberID, name and age of the Member
-            cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
+            std::cout << setw(10) << pCurr->memberID << setw(20) << pCurr->name << setw(10) 
             << pCurr->age << setw(20) << pCurr->phoneNo << setw(50) << pCurr->address 
             << setw(20) << pCurr->startDate << setw(20) << pCurr->endDate << endl;
             found = true;
@@ -242,9 +251,9 @@ bool Membership::searchAge()
 
 // Written by Mohamad Azri bin Azman
 // read the data from the file
-bool Membership::readFile(string fileName)
+bool Membership::readFile(std::string fileName)
 {
-    string memberID, age, name, phoneNo, address, startDate, endDate, split;    
+    std::string memberID, age, name, phoneNo, address, startDate, endDate, split;    
 
     ifstream file(fileName);
 
@@ -287,7 +296,7 @@ bool Membership::writeFile(string fileName)
     // if fail to open the file, return false
     if (!file.is_open()) 
     {
-        cout << "Fail to open the file" << endl;
+        std::cout << "Fail to open the file" << endl;
         return false;
     }
 
@@ -307,7 +316,7 @@ bool Membership::writeFile(string fileName)
         file << pCurr->endDate << "\n";
         pCurr = pCurr->link;
     }
-    cout << "file saved" << endl;
+    std::cout << "file saved" << endl;
     return true;
 }
 
@@ -316,8 +325,8 @@ bool Membership::writeFile(string fileName)
 void Membership::deleteMember(){
     int target;
     bool found = false;
-    cout << "Please enter the member id: ";
-    cin >> target;
+    std::cout << "Please enter the member id: ";
+    std::cin >> target;
 
     pCurr = pHead;
     Member *pLast = pCurr;
@@ -336,7 +345,7 @@ void Membership::deleteMember(){
             }
             numMember--;
             found = true;
-            cout << "Delete success" << endl;
+            std::cout << "Delete success" << endl;
             break;
         }
         else
@@ -347,7 +356,7 @@ void Membership::deleteMember(){
     }
     if (!found)
     {
-        cout << "Target memberID not found." << endl;
+        std::cout << "Target memberID not found." << endl;
     }
 }
 

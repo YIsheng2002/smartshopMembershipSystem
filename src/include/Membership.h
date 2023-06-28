@@ -2,8 +2,10 @@
 #define MEMBERSHIP_H
 #include<string>
 
+//Linked list
 class Membership{
 private:
+    //Node in linked list
     class Member{
         public:
             int memberID, age;
@@ -47,7 +49,7 @@ public:
         // take a head pointer
         Member *c;
     
-        if(a->memberID < b->memberID)
+        if(a->memberID < b->memberID)//compare the member id
         {
             c = a;
             c->link = mergeID(a->link, b);
@@ -75,7 +77,7 @@ public:
         // take a head pointer
         Member *c;
     
-        if(a->age < b->age)
+        if(a->age < b->age) //compare by age
         {
             c = a;
             c->link = mergeAge(a->link, b);
@@ -103,7 +105,7 @@ public:
         // take a head pointer
         Member *c;
     
-        if(a->name.compare(b->name)<=0)
+        if(a->name.compare(b->name)<=0) //compare by name
         {
             c = a;
             c->link = mergeName(a->link, b);
@@ -184,17 +186,28 @@ public:
     //written by Heng Yi Sheng
     //print sort menu and get user choice
     void sortMenu(){
-        int c;
+        int choice;
         std::cout << "Sort by:\n";
         std::cout << "1. Member ID\n";
         std::cout << "2. Member Name\n";
         std::cout << "3. Member Age\n";
         std::cout << "Enter your choice: (1/2/3)\n";
-        std::cin >> c;
+        std::cin >> choice;
 
-        sortType = c;
-        merge_sort(pHead);
-        printData();  
+        sortType = choice;
+        std::cin.clear();
+        std::cin.sync();
+        
+        
+        if (choice==1 || choice == 2 || choice ==3)
+        {
+            merge_sort(pHead);
+            printData();
+        }
+        else{
+            std::cout << "Invalid choice, please enter number between 1 to 3.\n";
+            sortMenu();
+        }            
     }
 };
 
